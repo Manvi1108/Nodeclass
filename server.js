@@ -32,15 +32,20 @@ const filesystem = require('fs');
 // filesystem.writeFileSync(process.argv[2], process.argv[3]);
 // console.log(process.argv[2]);
 
-// const event = require('events');
-// const eventEmitter = event.EventEmitter;
+const event = require('events');
+const eventEmitter = new event.EventEmitter;
 
-const EventEmitter = require('events');
-EventEmitter.on('hello', () => {
-    console.log('hello');
+eventEmitter.on('hello', () => {
+    console.log('hello world');
 })
-EventEmitter.emit('hello world')
+eventEmitter.on('hello1', () => {
+    console.log('hello1');
+})
+eventEmitter.on('hello2', () => {
+    console.log('hello2');
+})
+eventEmitter.emit('hello')
 
-// emit --> calling
-// on --> tells the working/declarartion of event
+// emit --> calling emit(event_name)
+// on --> tells the working/declarartion of event on(event_name, callback_function)
 // on before emit(always)
