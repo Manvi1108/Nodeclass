@@ -17,7 +17,7 @@
 //     console.log("hello from the server")
 // });
 
-const filesystem = require('fs');
+// const filesystem = require('fs');
 //api creation
 
 // const http = require('http');
@@ -31,18 +31,27 @@ const filesystem = require('fs');
 // }).listen(5000)
 // filesystem.writeFileSync(process.argv[2], process.argv[3]);
 // console.log(process.argv[2]);
+// console.log(process.argv.length);
 
+const http = require('http');
+http.createServer((req, res) => {
+    res.end("hello from the server side")
+    console.log("listening on port 3000")
+    }).listen(3000)
 const event = require('events');
 const eventEmitter = new event.EventEmitter;
 
-eventEmitter.on('hello', () => {
-    console.log('hello world');
+eventEmitter.on('hello', (res, req) => {
+    // console.log('hello world');
+    res.end("hello world");
 })
-eventEmitter.on('hello1', () => {
-    console.log('hello1');
+eventEmitter.on('hello1', (res, req) => {
+    // console.log('hello1');
+    res.end("hello1");
 })
-eventEmitter.on('hello2', () => {
-    console.log('hello2');
+eventEmitter.on('hello2', (res, req) => {
+    // console.log('hello2');
+    res.end("hello2");
 })
 eventEmitter.emit('hello')
 
